@@ -81,3 +81,19 @@ const galleryItems = images.map(image => {
     return li;
 })
 parentUL.append(...galleryItems);
+
+parentUL.addEventListener('click', event => {
+    event.preventDefault();
+
+    const img = event.target;
+
+    if (!img.classList.contains('gallery-image')) {
+        return;
+    };
+
+    const instance = basicLightbox.create(`
+        <img src="${img.dataset.source}" alt="${img.alt}">
+        `);
+    
+    instance.show();
+})
